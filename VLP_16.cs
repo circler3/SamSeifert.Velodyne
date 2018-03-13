@@ -8,8 +8,6 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-using SamSeifert.Utilities;
-using SamSeifert.Utilities.Json;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
@@ -110,7 +108,7 @@ namespace SamSeifert.Velodyne
                 }
                 catch (Exception e)
                 {
-                    Logger.WriteLine(this.GetType().FullName + ": " + e.ToString());
+                    System.Diagnostics.Debug.WriteLine(this.GetType().FullName + ": " + e.ToString());
                     incorrects++;
                 }
 
@@ -226,13 +224,13 @@ namespace SamSeifert.Velodyne
 
                 switch (raw_rt)
                 {
-                    case 37:
+                    case 0x37:
                         this._ReturnType = ReturnType.Strongest;
                         break;
-                    case 38:
+                    case 0x38:
                         this._ReturnType = ReturnType.Last;
                         break;
-                    case 39:
+                    case 0x39:
                         this._ReturnType = ReturnType.Dual;
                         break;
                     default:
@@ -246,17 +244,17 @@ namespace SamSeifert.Velodyne
                             }
 
                         if (added)
-                            Logger.WriteLine("Unrecognized Return Type: " + raw_rt);
+                            System.Diagnostics.Debug.WriteLine("Unrecognized Return Type: " + raw_rt);
 
                         break;
                 }
 
                 switch (raw_lt)
                 {
-                    case 21:
+                    case 0x21:
                         this._VelodyneModel = VelodyneModel.HDL_32E;
                         break;
-                    case 22:
+                    case 0x22:
                         this._VelodyneModel = VelodyneModel.VLP_16;
                         break;
                     default:
@@ -270,7 +268,7 @@ namespace SamSeifert.Velodyne
                             }
 
                         if (added)
-                            Logger.WriteLine("Unrecognized Lidar Type: " + raw_lt);
+                            System.Diagnostics.Debug.WriteLine("Unrecognized Lidar Type: " + raw_lt);
 
                         break;
                 }

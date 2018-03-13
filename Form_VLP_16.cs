@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Net;
-using SamSeifert.Utilities;
 
 namespace SamSeifert.Velodyne
 {
@@ -42,7 +41,7 @@ namespace SamSeifert.Velodyne
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            var end = new IPEndPoint(IPAddress.Parse("192.168.1.1"), 2368);
+            var end = new IPEndPoint(IPAddress.Parse("192.168.1.251"), 2368);
 
             try
             {
@@ -51,15 +50,15 @@ namespace SamSeifert.Velodyne
             }
             catch (Exception initalization_exception)
             {
-                Logger.WriteException(this, "Initialization", initalization_exception);
+                throw new Exception("Initialization", initalization_exception);
             }
         }
 
         private bool ShouldStopAsync(UpdateArgs ua)
         {
             Console.WriteLine(
-                ua.PacketsReceivedCorrectly + " " + 
-                ua.PacketsReceivedIncorrectly + " " + 
+                ua.PacketsReceivedCorrectly + " " +
+                ua.PacketsReceivedIncorrectly + " " +
                 ua.SocketErrors + " " +
                 ua.Timeouts);
 

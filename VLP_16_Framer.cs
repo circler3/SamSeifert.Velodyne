@@ -5,9 +5,6 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-using SamSeifert.Utilities;
-using SamSeifert.Utilities.Extensions;
-
 namespace SamSeifert.Velodyne
 {
     public class VLP_16_Framer
@@ -88,7 +85,7 @@ namespace SamSeifert.Velodyne
                 {
                     var tup = this._List[index];
 
-                    float angle_radians = SamSeifert.Utilities.UnitConverter.DegreesToRadians(tup.Item1);
+                    float angle_radians = UnitConverter.DegreesToRadians(tup.Item1);
                     float sin = (float)Math.Sin(angle_radians);
                     float cos = (float)Math.Cos(angle_radians);
 
